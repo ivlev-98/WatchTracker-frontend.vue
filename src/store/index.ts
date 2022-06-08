@@ -1,4 +1,5 @@
 import { createStore } from 'vuex';
+import { user } from '@/store/modules/user';
 import { Alert, AlertTypes } from './types';
 
 export default createStore({
@@ -15,5 +16,8 @@ export default createStore({
     dropAlert(state, idx: number) {
       state.alerts.splice(idx, 1);
     }
+  },
+  modules: {
+    user
   }
 })
