@@ -14,10 +14,12 @@ header.site-header(:class="isMenuActive ? 'active' : ''")
     a(href="#" @click="toggleMenu") Выход
 .container(:class="isMenuActive ? 'active' : ''")
   router-view
+  TheAlerts
 </template>
 
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
+import TheAlerts from '@/components/TheAlerts.vue';
 
 @Options({
   data() {
@@ -29,6 +31,9 @@ import { Options, Vue } from 'vue-class-component';
     toggleMenu() {
       this.isMenuActive = !this.isMenuActive;
     }
+  },
+  components: {
+    TheAlerts
   }
 })
 
