@@ -1,14 +1,19 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
+import { Alert, AlertTypes } from './types';
 
 export default createStore({
   state: {
-  },
-  getters: {
+    alerts: Array<Alert>()
   },
   mutations: {
-  },
-  actions: {
-  },
-  modules: {
+    error(state, messages: Array<string>) {
+      state.alerts.unshift({type: AlertTypes.error, messages});
+    },
+    success(state, messages: Array<string>) {
+      state.alerts.unshift({type: AlertTypes.success, messages});
+    },
+    dropAlert(state, idx: number) {
+      state.alerts.splice(idx, 1);
+    }
   }
 })
