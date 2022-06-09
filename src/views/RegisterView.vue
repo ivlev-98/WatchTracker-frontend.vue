@@ -1,23 +1,37 @@
 <template lang="pug">
 form.login-form
+  label(for="name") Имя:
+  input(
+    id="name"
+    type="name"
+    v-model="user.name"
+    placeholder="Иван Борисов"
+  )
   label(for="email") Почта:
   input(
     id="email"
     type="email"
-    v-model="credentials.email"
+    v-model="user.email"
     placeholder="example@domain.com"
   )
   label(for="password") Пароль:
   input(
     id="password"
     type="password"
-    v-model="credentials.password"
+    v-model="user.password"
+    placeholder="********"
+  )
+  label(for="password_confirmation") Пароль еще разок:
+  input(
+    id="password_confirmation"
+    type="password"
+    v-model="user.password_confirmation"
     placeholder="********"
   )
   button(
-    @click.prevent="login"
+    @click.prevent="register"
     :class="isDisabled ? 'disabled' : ''"
-  ) Войти
+  ) Зарегистрироваться
 </template>
 
 <script lang="ts">
@@ -28,21 +42,23 @@ import { Options, Vue } from 'vue-class-component';
   data() {
     return {
       isDisabled: false,
-      credentials: {
+      user: {
+        name: '',
         email: '',
-        password: ''
+        password: '',
+        password_confirmation: ''
       }
     }
   },
   methods: {
-    async login() {
+    async register() {
       this.isDisabled = true;
-      await store.dispatch('user/login', this.credentials);
+      await store.dispatch('user/register', this.user);
       this.isDisabled = false;
     }
   }
 })
-export default class LoginView extends Vue {}
+export default class RegisterView extends Vue {}
 </script>
 
 <style lang="stylus" scoped>

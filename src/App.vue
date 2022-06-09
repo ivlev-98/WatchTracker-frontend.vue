@@ -10,7 +10,7 @@ header.site-header(:class="isMenuActive ? 'active' : ''")
     router-link(:to="{name: 'home'}" @click="toggleMenu") Главная
     router-link(:to="{name: 'about'}" @click="toggleMenu") О нас
     router-link(:to="{name: 'login'}" @click="toggleMenu") Вход
-    a(href="#" @click="toggleMenu") Регистрация
+    router-link(:to="{name: 'register'}" @click="toggleMenu") Регистрация
     a(href="#" @click="toggleMenu") Выход
 .container(:class="isMenuActive ? 'active' : ''")
   router-view
