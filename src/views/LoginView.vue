@@ -1,8 +1,23 @@
 <template lang="pug">
 form.login-form
-  input(type="email" v-model="credentials.email" placeholder="example@domain.com")
-  input(type="password" v-model="credentials.password" placeholder="Пароль")
-  button(@click.prevent="login", :class="isDisabled ? 'disabled' : ''") Войти
+  label(for="email") Почта:
+  input(
+    id="email"
+    type="email"
+    v-model="credentials.email"
+    placeholder="example@domain.com"
+  )
+  label(for="password") Пароль:
+  input(
+    id="password"
+    type="password"
+    v-model="credentials.password"
+    placeholder="********"
+  )
+  button(
+    @click.prevent="login"
+    :class="isDisabled ? 'disabled' : ''"
+  ) Войти
 </template>
 
 <script lang="ts">
@@ -10,9 +25,6 @@ import store from '@/store';
 import { Options, Vue } from 'vue-class-component';
 
 @Options({
-  components: {
-   
-  },
   data() {
     return {
       isDisabled: false,
@@ -44,6 +56,10 @@ export default class LoginView extends Vue {}
     width 70%
   @media(max-width 750px)
     width 90%
+.login-form label
+  font-size 16px
+  color $text-color
+  padding 0 0 5px 5px
 .login-form input
   width 100%
   height 35px

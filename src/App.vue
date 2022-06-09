@@ -7,9 +7,9 @@ header.site-header(:class="isMenuActive ? 'active' : ''")
   nav.site-header__nav
     .nav__header
       span Alex Ivlev
-    a(href="#" @click="toggleMenu") Главная
-    a(href="#" @click="toggleMenu") О нас
-    a(href="#" @click="toggleMenu") Вход
+    router-link(:to="{name: 'home'}" @click="toggleMenu") Главная
+    router-link(:to="{name: 'about'}" @click="toggleMenu") О нас
+    router-link(:to="{name: 'login'}" @click="toggleMenu") Вход
     a(href="#" @click="toggleMenu") Регистрация
     a(href="#" @click="toggleMenu") Выход
 .container(:class="isMenuActive ? 'active' : ''")
