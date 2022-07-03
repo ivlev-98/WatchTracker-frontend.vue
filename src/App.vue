@@ -11,7 +11,7 @@ header.site-header(:class="isMenuActive ? 'active' : ''")
     router-link(:to="{name: 'about'}" @click="toggleMenu") О нас
     router-link(:to="{name: 'login'}" @click="toggleMenu") Вход
     router-link(:to="{name: 'register'}" @click="toggleMenu") Регистрация
-    a(href="#" @click="toggleMenu") Выход
+    router-link(:to="{name: 'logout'}" @click="toggleMenu") Выход
 .container(:class="isMenuActive ? 'active' : ''")
   router-view
   TheAlerts
