@@ -3,8 +3,7 @@
   .alert(
     v-for="(alert, index) in alerts"
     :class="getAlertClass(alert.type)")
-    span.messages
-      p(v-for="message in alert.messages") {{ message }}
+    span.message {{ alert.message }}
     span.close(@click="close(index)") x
 </template>
 
@@ -58,13 +57,10 @@ export default class TheAlerts extends Vue {}
   transition $transition
   position relative
   overflow hidden
-  &>.messages
+  &>.message
     width 70%
-    display flex
-    flex-direction column
-    &>p
-      padding 5px
-      color: $text-color
+    padding 5px
+    color: $text-color
   &>.close
     width 32px
     height 32px

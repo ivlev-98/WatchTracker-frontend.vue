@@ -3,6 +3,6 @@ export interface RootState {
 }
 export interface Alert {
     type: AlertTypes,
-    messages: Array<string>
+    message: string
 }
 export enum AlertTypes { success, error }

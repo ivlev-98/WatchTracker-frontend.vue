@@ -12,15 +12,14 @@ export const actions: ActionTree<UserState, RootState> = {
         let res = await axios.post('/api/login', credentials);
         if(res.data?.user) {
           commit('login', res.data.user);
-          commit('success', ['Вы успешно авторизованы'], {root: true})
+          commit('success', 'Вы успешно авторизованы', {root: true})
           router.push({name: 'home'})
         }
       }catch(e) {
         console.log(e);
         if(e instanceof AxiosError) {
           if(e.code === AxiosError.ERR_BAD_REQUEST && e.response?.data?.errors)
-            for(let messages of Object.values(e.response.data.errors))
-              commit('error', messages, {root: true})
+            commit('loginError', e.response.data.errors)
         }
       }
     },
@@ -30,7 +29,7 @@ export const actions: ActionTree<UserState, RootState> = {
         let res = await axios.post('/api/register', user);
         if(res.data?.user) {
           commit('login', res.data.user);
-          commit('success', ['Вы успешно зарегистрированы'], {root: true})
+          commit('success', 'Вы успешно зарегистрированы', {root: true})
           router.push({name: 'home'})
         }
       }catch(e) {

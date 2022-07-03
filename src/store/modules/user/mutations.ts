@@ -2,6 +2,9 @@ import { MutationTree } from "vuex";
 import { User, UserState } from "./types";
 
 export const mutations: MutationTree<UserState> = {
+  loginError(state, errors) {
+    state.loginErrors = errors;
+  },
   login(state, user: User) {
     state.user = user;
     state.auth = true;

@@ -7,11 +7,11 @@ export default createStore({
     alerts: Array<Alert>()
   },
   mutations: {
-    error(state, messages: Array<string>) {
-      state.alerts.unshift({type: AlertTypes.error, messages});
+    error(state, message: string) {
+      state.alerts.unshift({type: AlertTypes.error, message});
     },
-    success(state, messages: Array<string>) {
-      state.alerts.unshift({type: AlertTypes.success, messages});
+    success(state, message: string) {
+      state.alerts.unshift({type: AlertTypes.success, message});
     },
     dropAlert(state, idx: number) {
       state.alerts.splice(idx, 1);

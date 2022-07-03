@@ -6,14 +6,20 @@ form.login-form
     type="email"
     v-model="credentials.email"
     placeholder="example@domain.com"
+    :class="{error: loginErrors.email}"
   )
+  span(class="errors" v-for="error in loginErrors.email")
+    p {{ error }}
   label(for="password") Пароль:
   input(
     id="password"
     type="password"
     v-model="credentials.password"
     placeholder="********"
+    :class="{error: loginErrors.password}"
   )
+  span(class="errors" v-for="error in loginErrors.password")
+    p {{ error }}
   button(
     @click.prevent="login"
     :class="isDisabled ? 'disabled' : ''"
@@ -23,6 +29,7 @@ form.login-form
 <script lang="ts">
 import store from '@/store';
 import { Options, Vue } from 'vue-class-component';
+import { mapState } from 'vuex';
 
 @Options({
   data() {
@@ -40,6 +47,9 @@ import { Options, Vue } from 'vue-class-component';
       await store.dispatch('user/login', this.credentials);
       this.isDisabled = false;
     }
+  },
+  computed: {
+    ...mapState('user', ['loginErrors'])
   }
 })
 export default class LoginView extends Vue {}
@@ -72,6 +82,8 @@ export default class LoginView extends Vue {}
     outline 2px solid $primary-middle-color
   &:autofill
     box-shadow: 0 0 0px 1000px $color inset
+  &.error
+    outline 2px solid $danger-color
 .login-form button
   width min-content
   display flex
@@ -91,4 +103,13 @@ export default class LoginView extends Vue {}
     pointer-events none
     background $text-light-color
     color $color
+.login-form .errors
+  display flex
+  flex-direction column
+  color $danger-color
+  font-size 14px
+  margin-bottom 10px
+  margin-left 10px
+  & > .error
+    padding 5px
 </style>
