@@ -36,8 +36,7 @@ export const actions: ActionTree<UserState, RootState> = {
         console.log(e);
         if(e instanceof AxiosError) {
           if(e.code === AxiosError.ERR_BAD_REQUEST && e.response?.data?.errors)
-            for(let messages of Object.values(e.response.data.errors))
-              commit('error', messages, {root: true})
+            commit('registerError', e.response.data.errors)
         }
       }
     },

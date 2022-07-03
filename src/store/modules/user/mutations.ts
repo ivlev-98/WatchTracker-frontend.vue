@@ -5,6 +5,9 @@ export const mutations: MutationTree<UserState> = {
   loginError(state, errors) {
     state.loginErrors = errors;
   },
+  registerError(state, errors) {
+    state.registerErrors = errors;
+  },
   login(state, user: User) {
     state.user = user;
     state.auth = true;

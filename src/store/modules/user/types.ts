@@ -1,7 +1,8 @@
 export interface UserState {
     auth: boolean,
     user?: User,
-    loginErrors: loginErrors
+    loginErrors?: loginErrors,
+    registerErrors?: registerErrors
 }
 export interface User {
     id: number,
@@ -9,6 +10,11 @@ export interface User {
     email: string
 }
 export interface loginErrors {
-    email?: Array<String>,
-    password?: Array<String>
+    email?: Array<string>,
+    password?: Array<string>
+}
+export interface registerErrors {
+    name?: Array<string>
+    email?: Array<string>,
+    password?: Array<string>
 }
